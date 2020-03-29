@@ -1,0 +1,31 @@
+
+public class Prog {
+
+	public static void main(String[] args) {
+		String s = "0000010110101111";
+		int len = s.length();
+		int temp = 0;
+		String ans = "";
+		for(int i=1;i<=len/2;i++) {
+			String check =s.substring(temp,temp+2);
+			if(check.equals("00")){
+				ans+="A";
+			}
+			if(check.equals("01")){
+				ans+="B";
+			}
+			if(check.equals("10")){
+				ans+="C";
+			}
+			if(check.equals("11")){
+				ans+="D";
+			}
+			temp+=2;
+		}
+		System.out.println(ans);
+		
+				
+				
+	}
+
+}
