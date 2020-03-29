@@ -1,0 +1,32 @@
+public class Q3{
+
+    public static void main(String []args){
+        
+		String Ques = "我惡我我惡我";
+		String re = new StringBuffer(Ques).
+			      			reverse().toString();
+		int len = Ques.length()-1; 
+	    int[] ArrayAns=new int[len+1];
+	    int[] reverse=new int[len+1];
+	   
+	    for(int i=0;i<=len;i++) {
+	    	ArrayAns[i]=Ques.substring(i).indexOf("惡");
+	    	if(ArrayAns[i]==-1) {
+	    		ArrayAns[i]=100;
+	    	}
+	    }
+	    for(int i=0;i<=len;i++) {
+	    	reverse[i]=re.substring(i).indexOf("惡");
+	    }
+	    for(int i=0;i<=len;i++) {
+	    	if (reverse[len-i]<ArrayAns[i]) { 
+	    		if (reverse[len-i]!=-1) {
+		    		ArrayAns[i]=reverse[len-i];
+	    		}
+	    	}
+	    }    
+	    for(int k=0;k<=len;k++) {
+	    	System.out.print(ArrayAns[k]);
+	    }
+     }
+}
