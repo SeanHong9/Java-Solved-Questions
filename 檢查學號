@@ -1,0 +1,31 @@
+
+public class Prog {
+
+	public static void main(String[] args) {
+		String s = "10656001";
+		String year = s.substring(0,3);
+		int score = 0;
+		
+		if(s.length()==8) {
+			score+=1;
+		}
+		if(year.equals("106")||year.equals("107")||year.equals("108")) {
+			score+=1;
+		}
+		if(s.charAt(3)=='4' || s.charAt(3)=='5' ) {
+			score+=1;
+		}
+		if(s.charAt(4)=='6' ) {
+			score+=1;
+		}
+		
+		if(score==4) {
+			System.out.println("true");
+		}else {
+			System.out.println("false");
+		}
+		
+
+	}
+
+}
