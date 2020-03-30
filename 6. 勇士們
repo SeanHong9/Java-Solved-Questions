@@ -1,13 +1,13 @@
 class Main {
   public static void main(String []args){
-        String s1 = "KDIEWTBVXGMNZCSQASFRTYUPOMDWQ";
+        String s1 = "POILMVCJDHRRYEUWQAZXNSBFHTT";
         char a[]=s1.toCharArray();
         int check[] = new int[100];
 
         //整串字若包含A check[65]+=1 *A的ASC=65
         for(int i=65;i<=90;i++){
           for(int x=65;x<=90;x++){
-           if(a[x-65]==(char)i){     //因為a[]是從0開始存
+           if(a[x-65]==(char)i){
              check[i]+=1;
            }
           } 
