@@ -1,0 +1,22 @@
+public class Q2{
+
+     public static void main(String []args){
+        String s = "1112223334444555566667777";
+        String[] check = s.split("");
+        int error = 0;
+        
+        for(int i=1;i<check.length;i++){
+            int num1 = Integer.parseInt(check[i-1]);
+            int num2 = Integer.parseInt(check[i]);
+            if(num1 > num2){
+                error+=1;
+            }
+        }
+        if(error == 0){
+            System.out.println("==> true");
+        }else{
+            System.out.println("==> false");
+        }
+    
+     }
+}
