@@ -1,0 +1,23 @@
+public class Q2{
+
+     public static void main(String []args){
+        String s = "1122331";
+        String[] check = s.split("");
+        int max = 0;
+        int temp = 1; //判斷大小是算間隔 so暫存值預設1
+        
+        for(int i=1;i<check.length;i++){
+            int num1 = Integer.parseInt(check[i-1]);
+            int num2 = Integer.parseInt(check[i]);
+            if(num1 <= num2){
+                temp += 1; 
+            }
+            if(temp > max){
+                max = temp; 
+            }else{
+                temp = 1; //判斷大小是算間隔so預設1
+            }
+        }
+        System.out.println(max);
+     }        
+}   
