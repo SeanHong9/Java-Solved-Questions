@@ -1,0 +1,25 @@
+public class Q2{
+
+     public static void main(String []args){
+        String ans = "1234";
+        String[] ArrayAns = ans.split("");
+        String guess = "1483";
+        String[] ArrayGuess = guess.split("");
+        int getA = 0, getB = 0;
+        
+        for(int i=0;i<=3;i++){
+            for(int p=0;p<=3;p++){
+                if(ArrayGuess[p].equals(ArrayAns[i])){
+                    if(p==i){
+                        getA++;
+                    }else{
+                        getB++;
+                    }
+                }
+            }
+        }
+        System.out.println(getA + "A" + getB+ "B" );
+     } 
+} 
+         
+ 
