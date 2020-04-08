@@ -1,3 +1,29 @@
+6. 勇士們
+(1) 說明
+(1) 有一個任務派出52名勇士, 他們分為'A'~'Z'編號的26個小隊, 每隊有2人.
+    因此, 一開始的隊員有2個'A', 2個'B', ...及2個'Z'.
+    
+(2) 現給一個字串, 表示為"生還勇士".
+
+(3) 請列出小隊2人全部陣亡的隊名(依字母由小到大順序).
+(2) 測試
+(1) "KDIEWTBVXGMNZCSQASFRTYUPOMDWQ"
+    ==> "HJL"
+    
+(2) "POILMVCJDHRRYEUWQAZXNSBFHTT"
+    ==> "GK"
+    
+(3) "ABCDEFGHIJKLMN"
+    ==> "OPQRSTUVWXYZ"
+    
+(4) "OEIPWOIQURJDFDJXUSYQTWRECMVLP"
+    ==> "ABGHKNZ"
+    
+(5) "AEIROTPEPNJHYKXMDDIKWUURQAQZXCVBF"
+    ==> "GLS"
+    
+--------------------------------------------------------------
+
 class Main {
   public static void main(String []args){
         String s1 = "POILMVCJDHRRYEUWQAZXNSBFHTT";
