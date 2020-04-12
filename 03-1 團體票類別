@@ -1,26 +1,25 @@
     
-    題目:https://github.com/tomlinNTUB/Java-1082/blob/master/%E7%B7%B4%E7%BF%92-03%20%E6%92%B0%E5%AF%AB%E9%A1%9E%E5%88%A5.md#%E7%B7%B4%E7%BF%92-03-%E6%92%B0%E5%AF%AB%E9%A1%9E%E5%88%A5
-    
-    private int price; //新增成員 price
+    題目: https://github.com/tomlinNTUB/Java-1082/blob/master/%E7%B7%B4%E7%BF%92-03%20%E6%92%B0%E5%AF%AB%E9%A1%9E%E5%88%A5.md#%E7%B7%B4%E7%BF%92-03-%E6%92%B0%E5%AF%AB%E9%A1%9E%E5%88%A5
 
     public GroupTicket(String id, int adults, int children, boolean isExpress){
-          this.id=id;
-          this.adults=adults;
-          this.children=children;
-          this.isExpress=isExpress;
+        this.id=id;
+        this.adults=adults;
+        this.children=children;
+        this.isExpress=isExpress;
     }  //設定資料
     
     public int price(){
-          price = adults*800 + children*500;
-          if(isExpress)
-              price += adults*400 + children*250;
-            if(this.price<2000)
+        int price
+        price = adults*800 + children*500;
+        if(isExpress)
+            price += adults*400 + children*250;
+          if(this.price<2000)
               ;
-            else if(this.price<3000)
-              price*=0.9;
-            else if(this.price<5000)
-              price*=0.85;
-            else
-              price*=0.8;
-            return price;
+          else if(this.price<3000)
+            price*=0.9;
+          else if(this.price<5000)
+            price*=0.85;
+          else
+            price*=0.8;
+          return price;
     }  //計算價格
