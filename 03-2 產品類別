@@ -8,7 +8,7 @@
   } //設定資料
 
   public int price() {
-     double cost; //成本
+      double cost; //成本
       double price; //定價
       
       cost=(fixedCost+varCost)/amount;
