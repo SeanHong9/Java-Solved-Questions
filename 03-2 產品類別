@@ -1,0 +1,23 @@
+  題目: https://github.com/tomlinNTUB/Java-1082/blob/master/%E7%B7%B4%E7%BF%92-03%20%E6%92%B0%E5%AF%AB%E9%A1%9E%E5%88%A5.md#2-%E7%94%A2%E5%93%81%E9%A1%9E%E5%88%A5
+
+  public Product(String product, int amount, int fixedCost, int varCost) {
+      this.product=product;
+      this.amount=amount;
+      this.fixedCost=fixedCost;
+      this.varCost=varCost;
+  } //設定資料
+
+  public int price() {
+  	double cost; //成本
+      double price; //定價
+      
+      cost=(fixedCost+varCost)/amount;
+      Math.floor(cost); //捨去小數
+      if(cost>=2000)
+      	price = cost*1.55;
+      else if(cost>=1500)
+      	price = cost * 1.45;
+      else
+      	price = cost * 1.35;
+      return (int)price;
+    }  
