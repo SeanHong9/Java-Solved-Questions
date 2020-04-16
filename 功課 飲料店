@@ -1,0 +1,113 @@
+import java.util.*;
+class drink{
+	String drink;int price=0;
+	public drink(String drink,int price) {
+		this.drink=drink;
+		this.price+=price;
+	}
+	public void show(){
+		System.out.println(this.drink + "__" + price + "元");
+	}
+  public int getP(){
+    return price;
+  }
+}
+class plus{
+	String plus;int price;
+	public plus(String plus,int price) {
+		this.plus=plus;
+		this.price=price;
+	}
+	public void show(){
+		System.out.println(this.plus + "__" + price + "元");
+	}
+}
+
+class size{
+	String size;
+	public size(String size) {
+		this.size=size;
+	}
+	public void show(){
+		System.out.println(this.size);
+	}
+}
+
+
+class Main {
+	public static void main(String[] args) {
+	   
+	    
+		//drink
+		drink d1 = new drink("紅茶",10);
+		drink d2 = new drink("綠茶",10);
+		drink d3 = new drink("咖啡",15);
+		drink[] drinks = {d1,d2,d3};
+		
+		//plus
+		plus p1=new plus("珍珠",10);
+		plus p2=new plus("牛奶",5);
+		plus p3=new plus("西米露",10);
+		plus[] pluses = {p1,p2,p3};
+		
+		//size
+		size s1 = new size("大");
+		size s2 = new size("小");
+		size[] sizes = {s1,s2};
+		
+		//showMenu
+		System.out.println("---顯示菜單---");
+		System.out.println("飲料☆");
+		for(drink d:drinks) {
+			System.out.print("☆");
+			d.show();
+		}
+		System.out.println("配料★");
+		for(plus p:pluses) {
+		    System.out.print("★");
+			p.show();
+		}
+		System.out.println("杯子☆");
+		
+		
+		for(size s:sizes){
+		    System.out.print("☆");
+		    s.show();
+		} 
+		Scanner sc = new Scanner(System.in);
+		int num=0;int total=0;
+    while(true){
+        num++;
+        System.out.print("第" + num + "杯飲料:  ");
+        String s = sc.nextLine();
+        for(drink d:drinks) {
+          if(d.equals(s)){
+            total+=d.getP();
+          }
+        }
+        System.out.print("需要加配料嗎? Y/N");
+        String check = sc.nextLine();
+        if(check.equals("Y")){
+          boolean checkcplus=true;
+          while(checkplus){
+            System.out.print("還要加甚麼配料? 不需要請輸入N");
+            String pp = sc.nextLine();
+            if(sc.nextLine().equals("N")){
+              checkplus=false;
+            }else{
+              for(drink d:drinks) {
+                if(d.equals(pp)){
+                  total+=d.getP();
+              }}
+          }  
+         }}
+        }
+    }
+		
+        
+		
+		
+		
+	}
+
+
