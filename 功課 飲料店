@@ -1,113 +1,135 @@
 import java.util.*;
 class drink{
-	String drink;int price=0;
-	public drink(String drink,int price) {
+	String drink;int price;int number;
+	public drink(String drink,int price,int number) {
 		this.drink=drink;
-		this.price+=price;
+		this.price=price;
+		this.number=number;
 	}
 	public void show(){
-		System.out.println(this.drink + "__" + price + "元");
+		System.out.println(this.number +". " +this.drink + " (" + price + "元)");
 	}
-  public int getP(){
-    return price;
-  }
 }
 class plus{
-	String plus;int price;
-	public plus(String plus,int price) {
+	String plus;int price;int number;
+	public plus(String plus,int price,int number) {
 		this.plus=plus;
 		this.price=price;
+		this.number=number;
 	}
 	public void show(){
-		System.out.println(this.plus + "__" + price + "元");
+		System.out.print(this.number +". " +this.plus); 
+		if(this.number!=4) {
+			System.out.print(" (" + price + "元)");
+		}
+		System.out.println("");
 	}
 }
 
 class size{
-	String size;
-	public size(String size) {
+	String size;boolean DoublePrize;int number;
+	public size(String size,int number,boolean DoublePrize) {
 		this.size=size;
+		this.DoublePrize=DoublePrize;
+		this.number=number;
 	}
 	public void show(){
-		System.out.println(this.size);
+		if(this.number==1) {
+			this.DoublePrize=true;
+			System.out.println(this.number +". " +this.size+ "(x2)");
+		}else{
+			this.DoublePrize=false;
+			System.out.println(this.number +". " +this.size);
+		}
 	}
 }
 
+public class Prog1 {
 
-class Main {
 	public static void main(String[] args) {
-	   
-	    
+		Scanner sc = new Scanner(System.in);
 		//drink
-		drink d1 = new drink("紅茶",10);
-		drink d2 = new drink("綠茶",10);
-		drink d3 = new drink("咖啡",15);
+		drink d1 = new drink("紅茶",10,1);
+		drink d2 = new drink("綠茶",10,2);
+		drink d3 = new drink("咖啡",15,3);
 		drink[] drinks = {d1,d2,d3};
 		
 		//plus
-		plus p1=new plus("珍珠",10);
-		plus p2=new plus("牛奶",5);
-		plus p3=new plus("西米露",10);
-		plus[] pluses = {p1,p2,p3};
+		plus p1=new plus("珍珠",10,1);
+		plus p2=new plus("牛奶",5,2);
+		plus p3=new plus("西米露",10,3);
+		plus p4=new plus("不加了",0,4);
+		plus[] pluses = {p1,p2,p3,p4};
 		
 		//size
-		size s1 = new size("大");
-		size s2 = new size("小");
+		size s1 = new size("大杯",1,true);
+		size s2 = new size("小杯",2,false);
 		size[] sizes = {s1,s2};
 		
 		//showMenu
+		int total=0;
 		System.out.println("---顯示菜單---");
-		System.out.println("飲料☆");
+		
+		//showDrink
+		int ans=0;;String drinklist = "";
+		System.out.println("a.飲料選單");
 		for(drink d:drinks) {
-			System.out.print("☆");
 			d.show();
+		}	
+		System.out.print("請選飲料: ");
+		ans = sc.nextInt();
+		for(drink d:drinks) {
+		    if(ans==d.number) {
+		    	total+=d.price;
+		    	drinklist+=d.drink;
+		    }
 		}
-		System.out.println("配料★");
+		
+		//showPlus
+		boolean check=true;String pluslist="";ans=0;
+		System.out.println("b.配料選單");
 		for(plus p:pluses) {
-		    System.out.print("★");
 			p.show();
 		}
-		System.out.println("杯子☆");
+		while(check) {
+			System.out.print("請選配料: ");
+			ans = sc.nextInt();
+			if(ans==4) {
+				check=false;
+			}else {
+				for(plus p:pluses) {
+					p.show();
+				    if(ans==p.number) {
+				    	total+=p.price;
+				    	pluslist+=p.plus;
+				    }
+				}    
+			}
+		}
 		
-		
+		//showSize
+		String sizelist="";boolean checksize=true;ans=0;
+		System.out.println("c.大杯小杯");
+		for(size s:sizes) {
+			s.show();
+		}
+		System.out.print("請問大杯小杯: ");
+		ans = sc.nextInt();
 		for(size s:sizes){
-		    System.out.print("☆");
-		    s.show();
-		} 
-		Scanner sc = new Scanner(System.in);
-		int num=0;int total=0;
-    while(true){
-        num++;
-        System.out.print("第" + num + "杯飲料:  ");
-        String s = sc.nextLine();
-        for(drink d:drinks) {
-          if(d.equals(s)){
-            total+=d.getP();
-          }
-        }
-        System.out.print("需要加配料嗎? Y/N");
-        String check = sc.nextLine();
-        if(check.equals("Y")){
-          boolean checkcplus=true;
-          while(checkplus){
-            System.out.print("還要加甚麼配料? 不需要請輸入N");
-            String pp = sc.nextLine();
-            if(sc.nextLine().equals("N")){
-              checkplus=false;
-            }else{
-              for(drink d:drinks) {
-                if(d.equals(pp)){
-                  total+=d.getP();
-              }}
-          }  
-         }}
-        }
-    }
+			if(ans==s.number) {
+				sizelist+=s.size;
+				checksize=s.DoublePrize;
+				if(s.DoublePrize)
+					total*=2;
+			}
+		}
 		
-        
-		
-		
-		
+		System.out.println("");
+		System.out.println("");
+		System.out.println
+		(">>>你剛剛點了 " + sizelist+"的" + pluslist + drinklist
+				+", 金額:" + total + "元"	
+		);
 	}
 
-
+}
