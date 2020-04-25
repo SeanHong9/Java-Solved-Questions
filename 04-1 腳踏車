@@ -1,0 +1,138 @@
+題目: https://github.com/tomlinNTUB/Java-1082/blob/master/%E7%B7%B4%E7%BF%92-04%20%E6%92%B0%E5%AF%AB%E9%A1%9E%E5%88%A5%E7%B9%BC%E6%89%BF.md#%E7%B7%B4%E7%BF%92-04-%E6%92%B0%E5%AF%AB%E9%A1%9E%E5%88%A5%E7%B9%BC%E6%89%BF
+
+# 練習-04 撰寫類別繼承
+
+## 1. 腳踏車租車公司
+
+#### (1) 說明
+
+``` java
+(1) 這家腳踏車租車公司出租有3種車型, 包括「登山車」, 「公路車」, 「淑女車」.
+    開發系統的公司做了以下的系統分析, 決定讓3種車型都繼承「腳踏車」, 
+    這樣它們就可以用物件導向多型的特性, 在出租時不管是哪一種車型, 全部存在同一個List中.
+    
+(2) 結構如下:
+                     Bike 
+	        (腳踏車, 抽象類別)
+                       ^
+                       | (繼承)
+        |--------------|---------------|
+        |              |               |
+    MountainBike     RoadBike      LadyBike
+      (登山車)        (公路車)       (淑女車)
+
+
+(3) 父親Bike是一個抽象類別, 它有兩個抽象方法, title()及price().
+    它的3個兒子, 都必須完成父親的抽象方法.
+    
+(4) 請依程式碼中的說明, 完成3個兒子的title()及price()方法.
+-----
+
+class MountainBike extends Bike{
+    private int speed;   //變速(內容為16或24, 可不必檢查)
+
+    // 建構元
+    public MountainBike(String no, int speed) {
+        super(no);
+        this.speed = speed;
+    }	
+	
+    // 車輛說明, 例如:「車號*** 登山車16速」, 「車號*** 登山車24速」 
+    public String title() {
+        //請自己完成
+        return "車號" + this.getNo() + "登山車" + this.speed + "速";
+    }
+	
+    // 租金, 16速的租金是200元, 24速的租金是280元 
+    public int price() {
+        if(speed==16) {
+            return 200;
+        }else{  
+            return 280;
+        }  
+    }
+
+class RoadBike extends Bike{
+    private boolean isGiant;  //是否捷安特
+    private boolean isNew;    //是否新車	
+	
+    // 建構元
+    public RoadBike(String no, boolean isGiant, boolean isNew) {
+        super(no);
+    	this.isNew = isNew;
+        this.isGiant = isGiant;
+    }
+	
+    // 車輛說明, 例如:
+    //「車號*** 公路車捷安特新車」, 「車號*** 公路車捷安特舊車」, 
+    //「車號*** 公路車他牌新車」, 「車號*** 公路車他牌舊車」	
+    public String title() {
+        //請自己完成
+        if(isGiant) {
+    	    if(isNew) {
+    		    return "車號" + this.getNo() + " 公路車捷安特新車";
+    	    }else {
+    	    return "車號" + this.getNo() + " 公路車捷安特舊車";
+    	    }
+        }else {
+    	    if(isNew) {
+    		    return "車號" + this.getNo() + " 公路車他牌新車";
+    	    }else {
+    		    return "車號" + this.getNo() + " 公路車他牌舊車";
+    	    }
+        }
+    }	
+	
+    // 租金:
+    // 捷安特新車, 租金300元;  捷安特舊車, 租金250元;
+    // 他牌新車, 租金230元;  他牌舊車, 租金200元; 
+    public int price() {
+        if(isGiant) {
+    	    if(isNew) {
+    		    return 300;
+    	    }else {
+    		    return 250;
+    	    }
+        }else{
+    	    if(isNew) {
+    		    return 230;
+    	    }else {
+    		    return 200;
+    	}
+    }
+    }
+}
+
+class LadyBike extends Bike{
+    private char rank;   //等級
+
+    // 建構元
+    public LadyBike(String no, char rank) {
+        super(no);
+        this.rank = rank;
+    }
+	
+    // 車輛說明, 例如:「車號*** 淑女車A級」, 「車號*** 淑女車B級」, 「車號*** 淑女車C級」		
+    public String title() {
+        return "車號" + this.getNo() + " 淑女車" + this.rank + "級";
+    }	
+	
+    // 租金, A級車租金180元, B級車租金150元, C級車租金120元 
+    public int price() {
+        if(rank=='A') {
+    	    return 180;
+        }else if(rank=='B') {
+            return 150;
+        }else{
+    	    return 120;
+     }
+   }
+}
+
+
+
+
+
+
+
+
