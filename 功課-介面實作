@@ -1,0 +1,110 @@
+題目:https://github.com/tomlinNTUB/Java-1082/blob/master/%E7%B7%B4%E7%BF%92-05%20%E6%92%B0%E5%AF%AB%E4%BB%8B%E9%9D%A2%E5%AF%A6%E4%BD%9C.md#%E7%B7%B4%E7%BF%92-05-%E6%92%B0%E5%AF%AB%E4%BB%8B%E9%9D%A2%E5%AF%A6%E4%BD%9C
+
+class SemesterScore implements Evaluable{	
+    private int homework;      //平時成績
+    private int midterm;       //期中考
+    private int finalExam;     //期末考
+
+    // 建構元
+    public SemesterScore(int homework, int midterm, int finalExam) {
+        this.homework = homework;
+        this.midterm = midterm;
+        this.finalExam = finalExam;
+    }	
+	
+    // 回傳成績名稱 
+    public String title() {
+        return "學期成績";
+    }
+	
+    // 回傳成績(未完成)
+    // 回傳成績 = 平時成績*0.3 + 期中考*0.35 + 期末考*0.35
+    public double score() {
+        return homework*0.3 + midterm*0.35 + finalExam*0.35;
+    }
+}
+
+class PEscore implements Evaluable{	
+    private char[] scores = new char[3];  //3次測驗成績
+
+    // 建構元
+    public PEscore(char s1, char s2, char s3) {
+        this.scores[0] = s1;
+        this.scores[1] = s2;
+        this.scores[2] = s3;
+    }	
+	
+    // 回傳成績名稱 
+    public String title() {
+        return "體育成績";
+    }
+	
+    // 回傳成績(未完成)  
+    // 體育成績共考3次, 每次的計分如下:
+    // (1) 'A' 可得 95分;
+    // (2) 'B' 可得 85分;
+    // (3) 'C' 可得 75分;
+    // (4) 'D' 可得 65分;
+    // (5) 'E' 可得 55分;
+    // 回傳成績 = 3次分數相加
+    public double score() {
+    //請自行完成
+        int total=0;
+        for(int i=0; i<scores.length; i++) {
+        	if(scores[i]=='A') {
+        		total+=95;
+        	}else if(scores[i]=='B'){
+        		total+=85;
+        	}else if(scores[i]=='C'){
+        		total+=75;
+        	}else if(scores[i]=='D'){
+        		total+=65;
+        	}else{
+        		total+=55;
+        	}	
+        }
+        return total;
+    }
+}
+
+//=================================
+// 技藝成績, 實作了[可評分]介面,
+// 所以[技藝成績]是一個可評分類別
+//=================================
+class ARTscore implements Evaluable{	
+    private String comment;  //評語
+
+    // 建構元
+    public ARTscore(String comment) {
+        this.comment = comment;
+    }	
+	
+    // 回傳成績名稱 
+    public String title() {
+        return "技藝成績";
+    }
+	
+    // 回傳成績(未完成)  
+    // 技藝成績的成績計分如下:
+    // (1) "傑出" 可得 95分;
+    // (2) "優良" 可得 90分;
+    // (3) "合格" 可得 80分;
+    // (4) "尚可" 可得 70分;
+    // 回傳成績 = 轉換後的分數
+    public double score() {
+    //請自行完成
+    	int total=0;
+        if(comment.equals("傑出")) {
+        	total+=95;
+        }else if(comment.equals("優良")) {
+        	total+=90;
+        }else if(comment.equals("合格")) {
+        	total+=80;
+        }else {
+        	total+=70;
+        }
+        return total;
+    }
+
+
+}
