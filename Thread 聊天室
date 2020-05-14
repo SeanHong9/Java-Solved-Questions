@@ -1,0 +1,71 @@
+import java.util.*;
+class ChatRoom{
+	int count;
+	
+	public synchronized void addCount() {
+		count++;
+	}
+	public synchronized void deCount() {
+		count--;
+	}
+	public int getPersonCount() {
+		return this.count;
+	}
+}
+
+class Person implements Runnable{
+	private String name;
+	private ChatRoom room;
+	
+	public Person(String name) {
+		this.name = name;
+	}
+
+	public void setChatroom(ChatRoom room) {
+		this.room = room;
+	}
+	public void run() {
+		try{
+			Thread.sleep((int)(Math.random()*1000));
+		}catch (InterruptedException e) {
+			System.out.println("執行緒中斷了...");
+		}
+		room.addCount();
+		System.out.println(this.name + " 加入聊天室");
+		try{
+			Thread.sleep((int)(Math.random()*1000)+500);
+		}catch (InterruptedException e) {
+			System.out.println("執行緒中斷了...");
+		}
+		
+		room.deCount();
+		System.out.println(this.name + " 離開聊天室");
+	}
+}
+
+public class Prog1 {
+
+	public static void main(String[] args) {
+		ChatRoom room = new ChatRoom();
+		Thread[] threads = new Thread[100];
+		Person[] persons = new Person[100];
+		Thread timer = new Thread();
+		for(int i=0; i<threads.length; i++) {
+			persons[i] = new Person("p-" + i);
+			persons[i].setChatroom(room);
+			threads[i] = new Thread(persons[i]);
+			threads[i].start();
+		}
+		int k=0;
+		
+		try {
+			timer.sleep(1200);
+			timer.join();
+			System.out.println("聊天室剩" + room.getPersonCount() + "人");
+		}catch (InterruptedException e) {
+			System.out.println("執行緒中斷了...");
+		}
+		
+	}
+		
+}
