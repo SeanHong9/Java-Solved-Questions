@@ -1,0 +1,65 @@
+import java.util.Date;
+
+interface ITodo{
+	void justdo();
+}
+
+class MyTimer{
+	private int interval;
+	private ITodo todo;
+	private boolean done = false;
+	public MyTimer(int interval, ITodo todo) {
+		this.interval = interval;
+		this.todo = todo;
+		// TODO: 這邊做多執行緒程式, interval設定的時間結束後, 執行ITodo.justdo()
+		try {
+			Thread.sleep(interval);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		todo.justdo();
+		done = true;
+	}
+	
+	/***
+	 * 呼叫此函示會等待Timer倒數並執行完
+	 */
+	public void waitForFinish() {
+		// TODO: 等待Timer倒數並執行完
+		while(!done) {
+			try {
+				wait();
+			}catch(InterruptedException e){}
+		}
+		
+	}
+}
+
+class Todo1 implements ITodo{
+	@Override
+	public void justdo() {
+		System.out.println("時間到啦時間到啦時間到啦時間到啦");
+	}
+}
+
+class Todo2 implements ITodo{
+	@Override
+	public void justdo() {
+		for(int i=0;i<10;i++) {
+			System.out.println(i);
+		}
+	}
+}
+public class MyMain {
+
+	public static void main(String[] args) {
+		System.out.println("目前:" + new Date());
+		MyTimer timer1 = new MyTimer(3000, new Todo1());
+		timer1.waitForFinish();
+		System.out.println("目前:" + new Date());
+		MyTimer timer2 = new MyTimer(8000, new Todo2());
+		timer2.waitForFinish();
+		System.out.println("目前:" + new Date());
+	}
+}
